@@ -13,6 +13,8 @@ class _Svm:
         self.df.Residence_type = pd.factorize(self.df.Residence_type)[0]
         self.df['bmi'] = self.df['bmi'].replace(to_replace=['None'], value=[0])
         self.df.smoking_status = pd.factorize(self.df.smoking_status)[0]
+        self.df.Residence_type = pd.factorize(self.df.Residence_type)[0]
+        self.df.work_type = pd.factorize(self.df.work_type)[0]
 
     def Q1(self):
         X = self.df[
@@ -23,9 +25,39 @@ class _Svm:
         sum = 0
 
         for round in range(rounds):
-            X_train, X_test, y_train, y_test = train_test_split(X, Y, train_size=0.50, random_state=None)
-            clf = svm.SVC(kernel="linear")
-            clf.fit(X_train, y_train)
-            sum += clf.score(X_test, y_test)
+            X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.50, random_state=None)
+            Svm = svm.SVC(kernel="linear")
+            Svm.fit(X_train, Y_train)
+            sum += Svm.score(X_test, Y_test)
 
         print("Accuracy chance of stroke : ", sum / rounds)
+
+    def Q2(self):
+        X = self.df[
+            ["gender", "heart_disease", "ever_married", "smoking_status", "bmi"]]
+        Y = self.df['hypertension']
+        rounds = 50
+        sum = 0
+
+        for round in range(rounds):
+            X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.50, random_state=None)
+            Svm = svm.SVC(kernel="linear")
+            Svm.fit(X_train, Y_train)
+            sum += Svm.score(X_test, Y_test)
+
+        print("Accuracy chance of hypertension : ", sum / rounds)
+
+
+    def Q3(self):
+        X = self.df[["stroke", "gender", "Residence_type", "work_type"]]
+        Y = self.df['ever_married']
+        rounds = 50
+        sum = 0
+
+        for round in range(rounds):
+            X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.50, random_state=None)
+            Svm = svm.SVC(kernel="linear")
+            Svm.fit(X_train, Y_train)
+            sum += Svm.score(X_test, Y_test)
+
+        print("Accuracy chance of ever married : ", sum / rounds)
