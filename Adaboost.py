@@ -28,8 +28,7 @@ class _Adaboost:
             X_train, X_test, Y_train, Y_test = train_test_split(X, Y, train_size=0.50, random_state=None)
             AdaBoost = AdaBoostClassifier()
             AdaBoost.fit(X_train, Y_train)
-            acc = AdaBoost.score(X_test, Y_test)
-            sum += acc
+            sum += AdaBoost.score(X_test, Y_test)
 
         print("Accuracy chance of stroke : ", sum / rounds)
 

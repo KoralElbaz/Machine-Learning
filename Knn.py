@@ -26,7 +26,6 @@ class _KNN:
             X_train, X_test, y_train, y_test = train_test_split(X, Y, train_size=0.50, random_state=None)
             KNN = KNeighborsClassifier(n_neighbors=15)
             KNN.fit(X_train, y_train)
-            err = KNN.score(X_test, y_test)
-            sum += err
+            sum += KNN.score(X_test, y_test)
 
         print("Accuracy chance of stroke : ", sum / rounds)
