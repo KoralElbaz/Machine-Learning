@@ -20,8 +20,7 @@ class _Svm:
 
     def Q2(self):
         self.df = h.change_bmi(self.df)
-        X = self.df[
-            ["gender", "heart_disease", "ever_married", "smoking_status", "bmi"]]
+        X = self.df[["gender", "heart_disease", "ever_married", "smoking_status", "bmi"]]
         Y = self.df['hypertension']
         sum, rounds = fit_algo(X, Y)
 
