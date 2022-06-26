@@ -53,7 +53,7 @@ def change_avg_glucose_level(df):
     return df
 
 
-def result(accuracy_Adaboost, accuracy_Knn, accuracy_SVM, accuracy_LogisticRegression):
+def result(accuracy_Adaboost, accuracy_Knn, accuracy_SVM, accuracy_LogisticRegression, Q_str):
     x = ['Adaboost', 'Knn', 'SVM', 'LogisticRegression']
 
     y = [accuracy_Adaboost, accuracy_Knn, accuracy_SVM, accuracy_LogisticRegression]
@@ -68,7 +68,7 @@ def result(accuracy_Adaboost, accuracy_Knn, accuracy_SVM, accuracy_LogisticRegre
     addlabels(x, y)
 
     # giving title to the plot
-    plt.title("---- Q1 ----")
+    plt.title(Q_str)
 
     # giving X and Y labels
     plt.xlabel("Algorithms")

@@ -19,7 +19,7 @@ a = adaboost.Q1()
 k = knn.Q1()
 s = svm.Q1()
 l = lg.Q1()
-h.result(a, k, s, l)
+h.result(a, k, s, l, "----- Q1 -----")
 
 print(colored('\n\n----- Q1: Accuracy chance of stroke -----\n', 'red'))
 print(colored('    Algo             |      Accuracies', 'yellow', ))
@@ -35,16 +35,28 @@ print(colored(alg_str, 'blue'))
 alg_str = 'Logistic Regression: |       ' + str(l) + '%'
 print(colored(alg_str, 'magenta'))
 
+"""
+  ========= Q2 =============
+"""
+a = adaboost.Q2()
+k = knn.Q2()
+s = svm.Q2()
+l = lg.Q2()
+h.result(a, k, s, l, "----- Q2 -----")
 
-# print("\n\n~~~~~Q2~~~~~~~\n")
-# print("Adaboost:")
-# adaboost.Q2()
-# print("\nKnn:")
-# knn.Q2()
-# print("\nSvm:")
-# svm.Q2()
-# print("\nLogistic Regression:")
-# lg.Q2()
+print(colored('\n\n----- Q2: Accuracy chance of hypertension -----\n', 'red'))
+print(colored('    Algo             |      Accuracies', 'yellow'))
+alg_str = 'Adaboost:            |       ' + str(a) + '%'
+print(colored(alg_str, 'cyan'))
+
+alg_str = 'Knn:                 |       ' + str(k) + '%'
+print(colored(alg_str, 'green'))
+
+alg_str = 'SVM:                 |       ' + str(s) + '%'
+print(colored(alg_str, 'blue'))
+
+alg_str = 'Logistic Regression: |       ' + str(l) + '%'
+print(colored(alg_str, 'magenta'))
 
 # print("\n\n~~~~~Q3~~~~~~~\n")
 # print("Adaboost:")

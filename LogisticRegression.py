@@ -39,7 +39,7 @@ class _LogisticRegression:
             logistic.fit(X_train, Y_train)
             sum += logistic.score(X_test, Y_test)
 
-        print("Accuracy chance of hypertension : ", sum / rounds)
+        return float("{0:.3f}".format(sum / rounds * 100))
 
     def Q3(self):
         X = self.df[["gender", "Residence_type", "work_type", "smoking_status", "age"]]
