@@ -12,14 +12,14 @@ class _Adaboost:
         self.df = h.initialize(self.df)
 
     def Q1(self):
-        self.df = h.change_avg_glucose_level(self.df)
-        X = self.df[
-            ["gender", "age", "hypertension", "heart_disease", "ever_married", "Residence_type", "avg_glucose_level",
-             "smoking_status"]]
+        X = self.df[["gender", "age", "hypertension", "heart_disease", "ever_married", "avg_glucose_level",
+                     "smoking_status"]]
         Y = self.df['stroke']
         sum, rounds = fit_algo(X, Y)
 
-        print("Accuracy chance of stroke : ", sum / rounds)
+        # print("Accuracy chance of stroke : ", sum / rounds)
+        return float("{0:.3f}".format(sum / rounds * 100))
+
 
     def Q2(self):
         self.df = h.change_bmi(self.df)

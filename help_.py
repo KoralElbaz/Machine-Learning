@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def print_df(df):
@@ -50,3 +51,33 @@ def change_avg_glucose_level(df):
             df['avg_glucose_level'] = df['avg_glucose_level'].replace(glucose_val, 0)
         r_num += 1
     return df
+
+
+def result(accuracy_Adaboost, accuracy_Knn, accuracy_SVM, accuracy_LogisticRegression):
+    x = ['Adaboost', 'Knn', 'SVM', 'LogisticRegression']
+
+    y = [accuracy_Adaboost, accuracy_Knn, accuracy_SVM, accuracy_LogisticRegression]
+
+    # setting figure size by using figure() function
+    plt.figure(figsize=(10, 5))
+
+    # making the bar chart on the data
+    plt.bar(x, y, color=['red', 'green', 'blue', 'yellow'])
+
+    # calling the function to add value labels
+    addlabels(x, y)
+
+    # giving title to the plot
+    plt.title("---- Q1 ----")
+
+    # giving X and Y labels
+    plt.xlabel("Algorithms")
+    plt.ylabel("Accuracies (In percent)")
+
+    # visualizing the plot
+    plt.show()
+
+
+def addlabels(x, y):
+    for i in range(len(x)):
+        plt.text(i, y[i], y[i])
