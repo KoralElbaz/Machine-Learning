@@ -78,27 +78,24 @@ print(colored(alg_str, 'magenta'))
 # print("\nLogistic Regression:")
 # lg.Q4()
 
-#
-# df = pd.read_csv("stroke-data.csv")
-# df = h.initialize(df)
-#
-# # Show width
-# x = df.iloc[:, :-1]
-# y = df.iloc[:, -1]
-#
-# # Checking the importance of each column with ExtraTreesClassifier
-# model = ExtraTreesClassifier()
-# model.fit(x, y)
-# # Print the importance of each column by its order
-# print(model.feature_importances_)
-# print(model.feature_names_in_)
-# # Do a pie model of size 11 of the most to the least importance from the columns dataset
-# # slices = model.feature_importances_
-# # activities = model.feature_names_in_
-# # cols = ['olive', 'cyan', 'purple', 'blue', 'pink', 'red', 'gold', 'yellowgreen', 'lightcoral', 'lightskyblue',
-# #         'orangered']
-# # plt.pie(slices, labels=activities, autopct='  %1.1f%%  ', colors=cols, startangle=140, shadow=True, radius=1.5)
-#
-# feat_importances = pd.Series(model.feature_importances_, name="importances", index=x.columns)
-# feat_importances.nlargest(11).plot(kind='pie')
-# plt.show()
+df = pd.read_csv("stroke-data.csv")
+df = h.initialize(df)
+
+# Show width
+x = df.iloc[:, :-1]
+y = df.iloc[:, -1]
+
+# Checking the importance of each column with ExtraTreesClassifier
+model = ExtraTreesClassifier()
+model.fit(x, y)
+# Do a pie model of size 11 of the most to the least importance from the columns dataset
+slices = model.feature_importances_
+activities = model.feature_names_in_
+cols = ['olive', 'cyan', 'purple', 'blue', 'pink', 'red', 'gold', 'yellowgreen', 'lightcoral', 'lightskyblue',
+        'orangered']
+# plotting the pie chart
+plt.pie(slices, labels=activities, colors=cols,
+        startangle=90, shadow=True, explode=(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+        radius=1.4, autopct='%1.1f%%')
+
+plt.show()
