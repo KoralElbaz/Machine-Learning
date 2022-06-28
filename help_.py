@@ -81,3 +81,5 @@ def result(accuracy_Adaboost, accuracy_Knn, accuracy_SVM, accuracy_LogisticRegre
 def addlabels(x, y):
     for i in range(len(x)):
         plt.text(i, y[i], y[i])
+
+
