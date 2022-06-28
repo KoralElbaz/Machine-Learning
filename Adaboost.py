@@ -20,9 +20,7 @@ class _Adaboost:
         # print("Accuracy chance of stroke : ", sum / rounds)
         return float("{0:.3f}".format(sum / rounds * 100))
 
-
     def Q2(self):
-        self.df = h.change_bmi(self.df)
         X = self.df[
             ["gender", "heart_disease", "ever_married", "smoking_status", "bmi"]]
         Y = self.df['hypertension']
@@ -31,21 +29,19 @@ class _Adaboost:
         return float("{0:.3f}".format(sum / rounds * 100))
 
     def Q3(self):
-        X = self.df[["gender", "Residence_type", "work_type", "smoking_status"]]
+        X = self.df[["gender", "Residence_type", "work_type", "smoking_status", "age"]]
         Y = self.df['ever_married']
         sum, rounds = fit_algo(X, Y)
 
-        print("Accuracy chance of ever married : ", sum / rounds)
+        return float("{0:.3f}".format(sum / rounds * 100))
 
     def Q4(self):
-        # self.df = h.change_avg_glucose_level(self.df)
-        # self.df = h.change_bmi(self.df)
-        h.print_change(self.df)
-        # X = self.df[["stroke", "heart_disease", "smoking_status", "hypertension", "avg_glucose_level", "bmi"]]
-        X = self.df[["stroke", "heart_disease", "hypertension", "avg_glucose_level", "bmi"]]  # 0.68
+        self.df['age'] = np.where(self.df['age'] < 43.22, 0, 1)  # age_avg = 43.22
+        X = self.df[["stroke", "heart_disease", "hypertension", "avg_glucose_level", "bmi"]]
         Y = self.df['age']
         sum, rounds = fit_algo(X, Y)
-        print("Accuracy chance of age>43.22: ", sum / rounds)
+
+        return float("{0:.3f}".format(sum / rounds * 100))
 
 
 def fit_algo(X, Y):

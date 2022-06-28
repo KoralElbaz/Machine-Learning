@@ -19,7 +19,6 @@ class _KNN:
         return float("{0:.3f}".format(sum / rounds * 100))
 
     def Q2(self):
-        self.df = h.change_bmi(self.df)
         X = self.df[
             ["gender", "heart_disease", "ever_married", "smoking_status", "bmi"]]
         Y = self.df['hypertension']
@@ -32,14 +31,15 @@ class _KNN:
         Y = self.df['ever_married']
         sum, rounds = fit_algo(X, Y)
 
-        print("Accuracy chance of ever married : ", sum / rounds)
+        return float("{0:.3f}".format(sum / rounds * 100))
 
     def Q4(self):
-        X = self.df[["stroke", "heart_disease", "heart_disease"]]
+        self.df['age'] = np.where(self.df['age'] < 43.22, 0, 1)  # age_avg = 43.22
+        X = self.df[["stroke", "heart_disease", "hypertension", "avg_glucose_level", "bmi"]]
         Y = self.df['age']
         sum, rounds = fit_algo(X, Y)
 
-        print("Accuracy chance of age>43.22: ", sum / rounds)
+        return float("{0:.3f}".format(sum / rounds * 100))
 
 
 def fit_algo(X, Y):
