@@ -1,15 +1,12 @@
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.model_selection import train_test_split
-import pandas as pd
 import numpy as np
-import help_ as h
 
 
 class _Adaboost:
 
-    def __init__(self):
-        self.df = pd.read_csv("stroke-data.csv")
-        self.df = h.initialize(self.df)
+    def __init__(self, _df):
+        self.df = _df
 
     def Q1(self):
         X = self.df[["gender", "age", "hypertension", "heart_disease", "ever_married", "avg_glucose_level",
@@ -29,14 +26,15 @@ class _Adaboost:
         return float("{0:.3f}".format(sum / rounds * 100))
 
     def Q3(self):
-        X = self.df[["gender", "Residence_type", "work_type", "smoking_status", "age"]]
+        X = self.df[
+            ["gender", "Residence_type", "smoking_status", "age", "Govt_job", "Never_worked", "Private", "Self-employed",
+             "children"]]
         Y = self.df['ever_married']
         sum, rounds = fit_algo(X, Y)
 
         return float("{0:.3f}".format(sum / rounds * 100))
 
     def Q4(self):
-        self.df['age'] = np.where(self.df['age'] < 43.22, 0, 1)  # age_avg = 43.22
         X = self.df[["stroke", "heart_disease", "hypertension", "avg_glucose_level", "bmi"]]
         Y = self.df['age']
         sum, rounds = fit_algo(X, Y)

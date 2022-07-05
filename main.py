@@ -4,11 +4,16 @@ from LogisticRegression import _LogisticRegression
 from Knn import _KNN
 from termcolor import colored
 import help_ as h
+import pandas as pd
+import numpy as np
 
-adaboost = _Adaboost()
-svm = _Svm()
-lg = _LogisticRegression()
-knn = _KNN()
+
+df = h.initialize(pd.read_csv("stroke-data.csv"))
+
+adaboost = _Adaboost(df)
+svm = _Svm(df)
+lg = _LogisticRegression(df)
+knn = _KNN(df)
 """
   ========= Q1 =============
 """
@@ -56,8 +61,9 @@ alg_str = 'Logistic Regression: |       ' + str(l) + '%'
 print(colored(alg_str, 'magenta'))
 
 """
-#   ========= Q3 =============
-# """
+  ========= Q3 =============
+"""
+df = h.oneEncodeDF(df)
 a = adaboost.Q3()
 k = knn.Q3()
 s = svm.Q3()
@@ -81,6 +87,7 @@ print(colored(alg_str, 'magenta'))
 """
   ========= Q4 =============
 """
+df['age'] = np.where(df['age'] < 43.22, 0, 1)  # age_avg = 43.22
 a = adaboost.Q4()
 k = knn.Q4()
 s = svm.Q4()
@@ -100,6 +107,7 @@ print(colored(alg_str, 'blue'))
 
 alg_str = 'Logistic Regression: |       ' + str(l) + '%'
 print(colored(alg_str, 'magenta'))
+
 
 """
   ========= Q5 =============

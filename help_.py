@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.preprocessing import OneHotEncoder
 
 
 def print_df(df):
@@ -15,7 +16,7 @@ def initialize(df):
     df['bmi'] = df['bmi'].replace(to_replace=['None'], value=[-1])
     df.smoking_status = pd.factorize(df.smoking_status)[0]
     df.Residence_type = pd.factorize(df.Residence_type)[0]
-    df.work_type = pd.factorize(df.work_type)[0]
+
     return df
 
 
@@ -50,9 +51,18 @@ def addlabels(x, y):
         plt.text(i, y[i], y[i])
 
 
+def oneEncodeDF(df):
+    ohe = OneHotEncoder()
+    transformed = ohe.fit_transform(df[['work_type']])
+    df[ohe.categories_[0]] = transformed.toarray()
+    del df['work_type']
+    return df
+
+
 def Q5():
     df = pd.read_csv("stroke-data.csv")
     df = initialize(df)
+    df.work_type = pd.factorize(df.work_type)[0]
 
     # Show width
     x = df.iloc[:, :-1]
