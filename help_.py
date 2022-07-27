@@ -1,8 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from imblearn.over_sampling import RandomOverSampler
 from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
-
 
 def print_df(df):
     with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
@@ -57,7 +58,6 @@ def oneEncodeDF(df):
     df[ohe.categories_[0]] = transformed.toarray()
     del df['work_type']
     return df
-
 
 def Q5():
     df = pd.read_csv("stroke-data.csv")

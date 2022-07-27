@@ -22,7 +22,7 @@ k = knn.Q1()
 s = svm.Q1()
 l = lg.Q1()
 h.result(a, k, s, l, "----- Q1 -----")
-
+#
 print(colored('\n\n----- Q1: Accuracy chance of stroke -----\n', 'red'))
 print(colored('    Algo             |      Accuracies', 'yellow', ))
 alg_str = 'Adaboost:            |       ' + str(a) + '%'
@@ -61,8 +61,8 @@ alg_str = 'Logistic Regression: |       ' + str(l) + '%'
 print(colored(alg_str, 'magenta'))
 
 """
-  ========= Q3 =============
-"""
+#   ========= Q3 =============
+# """
 df = h.oneEncodeDF(df)
 a = adaboost.Q3()
 k = knn.Q3()
